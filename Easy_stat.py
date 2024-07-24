@@ -206,7 +206,7 @@ def Compare_Mean_to_Ref_Value(df:pd.DataFrame, columns:list, alpha:float, side:s
     
     test = p < alpha
     logging.debug(f"Validity of the test : {test}")
-    return p < alpha
+    return test
         
 def Compare_two_Means(df:pd.DataFrame, columns:list, alpha:float, side:str, dependant:bool)->float:
     Check_nb_cols(columns, 2)
@@ -259,7 +259,7 @@ def Compare_two_Means(df:pd.DataFrame, columns:list, alpha:float, side:str, depe
 
     test = p < alpha
     logging.debug(f"Validity of the test : {test}")
-    return p < alpha
+    return test
 
 def Compare_Mean_to_Ref_Group(df:pd.DataFrame, columns:list, alpha:float, side:str)->float:
     Check_nb_cols(columns, 3)
@@ -301,7 +301,7 @@ def Compare_Mean_to_Ref_Group(df:pd.DataFrame, columns:list, alpha:float, side:s
     
     test = p < alpha
     logging.debug(f"Validity of the test : {test}")
-    return p < alpha
+    return test
 
 def Compare_Proportion(df:pd.DataFrame, columns:list, alpha:float, side:str, dependant:bool):
     ## Apporter une transformation en tableau de proportion
@@ -324,11 +324,11 @@ def Compare_Proportion(df:pd.DataFrame, columns:list, alpha:float, side:str, dep
     else:
         logging.info("Running Non-Parametric McNemar's Test")
         statistic, p = mcnemar(df.loc[:,columns], exact=True)
-        logging.debug(f"Statistics : {oddsratio}")
-        logging.debug(f"p value : {p}")  
+        logging.debug(f"Statistics : {statistic}")
+        logging.debug(f"p value : {p}")
         
     test = p < alpha
     logging.debug(f"Validity of the test : {test}")
-    return p < alpha
+    return test
 
 # def 
